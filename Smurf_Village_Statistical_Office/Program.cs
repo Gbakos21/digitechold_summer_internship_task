@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Smurf_Village_Statistical_Office.Data;
 
@@ -13,10 +12,19 @@ namespace Smurf_Village_Statistical_Office
             builder.Services.AddDbContext<SmurfVillageContext>(options =>
                 options.UseInMemoryDatabase("SmurfVillageDb"));
 
-            // Add services to the container.
-
+            // services to the container.
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+            //CORS:
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy => policy
+                        .WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
+            
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
@@ -28,7 +36,7 @@ namespace Smurf_Village_Statistical_Office
                 DbInitializer.Initialize(context);
             }
 
-            // Configure the HTTP request pipeline.
+            
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
@@ -36,8 +44,10 @@ namespace Smurf_Village_Statistical_Office
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            // CORS:
+            app.UseCors("AllowFrontend");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

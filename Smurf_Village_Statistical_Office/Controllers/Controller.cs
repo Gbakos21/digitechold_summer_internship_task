@@ -47,6 +47,7 @@ namespace Smurf_Village_Statistical_Office.Controllers
             return Ok(houses);
         }
 
+
         [HttpGet("WorkingPlaces")]
         public async Task<IActionResult> GetWorkingPlaces()
         {
