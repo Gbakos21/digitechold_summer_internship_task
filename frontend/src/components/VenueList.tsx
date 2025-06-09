@@ -6,11 +6,17 @@ import {
   Chip,
   Stack,
 } from "@mui/material";
-import type { LeisureVenue } from "../types/SmurfTypes";
+import type { LeisureVenue, Brand } from "../types/SmurfTypes";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { getNameById } from "../types/SmurfTypes";
 
-export default memo(function VenueList({ venues }: { venues: LeisureVenue[] }) {
+type VenueListProps = {
+  venues: LeisureVenue[];
+  brands: Brand[];
+};
+
+export default memo(function VenueList({ venues, brands }: VenueListProps) {
   const navigate = useNavigate();
   return (
     <Grid container spacing={2}>
@@ -44,7 +50,9 @@ export default memo(function VenueList({ venues }: { venues: LeisureVenue[] }) {
               >
                 <Chip label={`Members: ${v.members?.length || 0}`} />
                 <Chip label={`Capacity: ${v.capacity}`} />
-                <Chip label={`Brand: ${v.acceptedBrand}`} />
+                <Chip
+                  label={`Brand: ${getNameById(brands, v.acceptedBrand)}`}
+                />
               </Stack>
               <Typography variant="body2" fontWeight={600}>
                 Members:

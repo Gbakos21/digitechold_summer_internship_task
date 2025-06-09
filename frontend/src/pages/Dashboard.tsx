@@ -123,7 +123,7 @@ export default function Dashboard({ darkMode, setDarkMode }: DashboardProps) {
         {tab === 1 && <SmurfList smurfs={data.smurfs} jobs={data.jobs} />}
         {tab === 2 && <HouseList houses={data.houses} />}
         {tab === 3 && <WorkplaceList workplaces={data.workplaces} />}
-        {tab === 4 && <VenueList venues={data.venues} />}
+        {tab === 4 && <VenueList venues={data.venues} brands={data.brands} />}
       </Box>
     </Box>
   );
