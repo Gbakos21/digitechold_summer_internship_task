@@ -28,6 +28,7 @@ export default memo(function SmurfList({
             sx={{
               display: "flex",
               alignItems: "stretch",
+              height: "100%",
               cursor: "pointer",
               transition: "box-shadow 0.2s",
               "&:hover": {
