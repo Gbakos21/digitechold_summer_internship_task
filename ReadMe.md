@@ -24,6 +24,7 @@
 20. Setting up a .env file for flexible API endpoint configuration
 21. Updating the backend to enable CORS, allowing cross-origin API requests from the frontend (container-to-container communication)
 22. docker compose up --build
+23. Fixed backend issue: Mushroom houses now provide accepted foods information in the API response
 
 ---
 
