@@ -39,13 +39,16 @@ namespace Smurf_Village_Statistical_Office.Controllers
                     h.Capacity,
                     h.Color,
                     h.Motto,
-                    ResidentIds = h.Residents.Select(r => r.Id).ToList()
+                    ResidentIds = h.Residents.Select(r => r.Id).ToList(),
+                    AcceptedFoods = h.AcceptedFoods
                 })
                 .AsNoTracking()
                 .ToListAsync();
 
             return Ok(houses);
         }
+
+
 
         [HttpGet("WorkingPlaces")]
         public async Task<IActionResult> GetWorkingPlaces()
